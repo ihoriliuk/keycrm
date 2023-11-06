@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>API Documentation | Barcode Lookup</title>
+<meta name="description" content="Barcode Lookup's comprehensive API documentation for its API service.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.barcodelookup.com/assets/stylesheets/style.css">
+<script src="https://www.barcodelookup.com/assets/javascript/jquery.min.js"></script>
+<script src="https://www.barcodelookup.com/assets/javascript/navbar.js"></script>
+<script src="https://www.barcodelookup.com/assets/javascript/cmp.js"></script>
+
+<script nonce="39d97e3ed0f0cb7eacedcd05" async src="https://www.googletagmanager.com/gtag/js?id=G-6K9HJQ9YDK"></script>
+<script nonce="39d97e3ed0f0cb7eacedcd05">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6K9HJQ9YDK');
+</script>
+</head>
+<body id="dashboard">
+
+<header class="header">
+<div class="container">
+<div class="row">
+<div class="col-100">
+<div class="logo-container">
+<button type="button" class="menu-toggle">
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a href="https://www.barcodelookup.com/" class="barcode-lookup-logo"><img src="https://www.barcodelookup.com/assets/images/barcode-lookup-logo.png" alt="Barcode Lookup logo" /><span class="barcode-logo visible">&nbsp;BARCODE</span><span class="lookup-logo">&nbsp;LOOKUP</span></a>
+</div>
+<div id="header-menu" class="menu-collapse">
+<ul class="nav">
+<li class="barcode-lookup-logo-mobile"><a class="barcode-lookup-logo" href="https://www.barcodelookup.com/"><span class="barcode-logo">&nbsp;BARCODE</span><span class="lookup-logo">&nbsp;LOOKUP</span></a><button type="button" class="menu-toggle close-menu"><span></span><span></span></button></li>
+<li><a href="#intro">Introduction</a></li>
+<li><a href="#authentication">Authentication</a></li>
+<li><a href="#endpoints">Endpoints</a></li>
+<li><a href="#code-examples">Code Examples</a></li>
+<li><a href="#api-queries">API Queries</a></li>
+<li><a href="#rate-limits">Rate Limits</a></li>
+<li><a href="#http-status-codes">HTTP Status Codes</a></li>
+<li><a href="#update-account">Update Account</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</header>
+
+<div class="navbar-fixed-left">
+<ul id="dashboard-left-menu" class="nav">
+<li><a href="#intro">Introduction</a></li>
+<li><a href="#authentication">Authentication</a></li>
+<li><a href="#endpoints">Endpoints</a></li>
+<li><a href="#code-examples">Code Examples</a></li>
+<li><a href="#api-queries">API Queries</a></li>
+<li><a href="#rate-limits">Rate Limits</a></li>
+<li><a href="#http-status-codes">HTTP Status Codes</a></li>
+<li><a href="#update-account">Update Account</a></li>
+</ul>
+</div>
+<div id="api-documentation">
+<div class="container" id="intro">
+<div class="row">
+<div class="col-100">
+<h1>API Documentation</h1>
+<p>The Barcode Lookup API documentation describes how to use our RESTful API service. All API responses are returned in JSON format. If you have additional questions, please email <a href="/cdn-cgi/l/email-protection#afdcdadfdfc0dddbefcdceddccc0cbcac3c0c0c4dadf81ccc0c2" class="bold-link">support</a>.</p>
+</div>
+</div>
+</div>
+<hr class="dashboard-divider">
+<div class="container" id="authentication">
+<div class="row">
+<div class="col-100">
+<h2 class="no-text-decoration">Authentication</h2>
+<p>Every user account is assigned one unique API key upon account creation. Authenticate each API call by including your API Key in every request.</p>
+<div class="code-overflow"><code>https://api.barcodelookup.com/v3/products?key=your_api_key</code></div>
+</div>
+</div>
+</div>
+<hr class="dashboard-divider">
+<div class="container" id="endpoints">
+<div class="row">
+<div class="col-100">
+<h2 class="no-text-decoration">Endpoints</h2>
+<div class="accordion">
+<div class="panel">
+<div class="panel-heading">
+<h4 class="panel-title">
+<span class="accordion-get-btn">GET</span>
+<span class="panel-up-arrow">https://api.barcodelookup.com/v3/products</span>
+</h4>
+</div>
+<div class="panel-body first-panel">
+<div class="table-responsive">
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Example Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>barcode</td>
+<td>string</td>
+<td>865694301167</td>
+<td>barcode value must be 7, 8, 10, 11, 12, 13 or 14 digits long</td>
+</tr>
+<tr>
+<td>mpn</td>
+<td>string</td>
+<td>LXCF9407</td>
+<td>MPN parameter is the manufacturer part number</td>
+</tr>
+<tr>
+<td>asin</td>
+<td>string</td>
+<td>B079L4WR4T</td>
+<td>ASIN parameter is the Amazon Standard Identification Number</td>
+</tr>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>Red Running Shoes</td>
+<td>search by product name (title) for any item</td>
+</tr>
+<tr>
+<td>category</td>
+<td>string</td>
+<td>Home &amp; Garden > Decor</td>
+<td>search by category - based on <a href="https://www.google.com/basepages/producttype/taxonomy.en-US.txt" target="_blank">Google's product taxonomy</a></td>
+</tr>
+<tr>
+<td>manufacturer</td>
+<td>string</td>
+<td>Samsung</td>
+<td>search by manufacturer - use double quotes ("") around value for an exact match</td>
+</tr>
+<tr>
+<td>brand</td>
+<td>string</td>
+<td>Calvin Klein</td>
+<td>search by brand - use double quotes ("") around value for an exact match</td>
+</tr>
+<tr>
+<td>search</td>
+<td>string</td>
+<td>Air Jordan Red Shoes Size 40</td>
+<td>query all the search fields including title, category, brand and MPN</td>
+</tr>
+<tr>
+<td>metadata</td>
+<td>string</td>
+<td>y</td>
+<td>retrieve the number of pages, products and cursor positions for any search query</td>
+</tr>
+<tr>
+<td>cursor</td>
+<td>string</td>
+<td>AoEpMTAwMDMxMDEw</td>
+<td>current and next position in a returned set of data</td>
+</tr>
+<tr>
+<td>page</td>
+<td>integer</td>
+<td>956</td>
+<td>pagination for API results (1,000 maximum)</td>
+</tr>
+<tr>
+<td>geo</td>
+<td>string</td>
+<td>us, gb, ca, eu <span class="table-note">(only possible values)</span></td>
+<td>filter online store results by geographical location</td>
+</tr>
+<tr>
+<td>formatted</td>
+<td>string</td>
+<td>y <span class="table-note">(only possible value)</span></td>
+<td>beautify JSON output - recommended only for web browser use</td>
+</tr>
+<tr>
+<td>key</td>
+<td>string</td>
+<td>isDzhm4Kav42OD93NEO</td>
+<td>unique API key (required)</td>
+</tr>
+<tr>
+<td class="table-note" colspan="4">Note: Use multiple API parameters (mpn, title, category and/or geo) to filter your search results. The 'search' parameter is used for a more general search-everything response.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="api-documentation-subtitle">Curl Example</div>
+<div class="code-overflow"><code>curl --include --header 'Accept: application/json' 'https://api.barcodelookup.com/v3/products?barcode=3614272049529&key=your_api_key'</code></div>
+<div class="api-documentation-subtitle">Request URL Example</div>
+<div class="code-overflow"><code>https://api.barcodelookup.com/v3/products?barcode=3614272049529&formatted=y&key=your_api_key</code></div>
+<div class="api-documentation-subtitle">Response Code</div>
+<div class="code-overflow"><code>200</code></div>
+<div class="api-documentation-subtitle">Response Body</div>
+<pre><div class="code-overflow-pre"><code>{
+    "products": [
+        {
+            "barcode_number": "886736874135",
+            "barcode_formats": "UPC-A 886736874135, EAN-13 0886736874135",
+            "mpn": "CE-XLR3200",
+            "model": "XLR",
+            "asin": "B01KUHG2G8",
+            "title": "Nike Red Running Shoes - Size 10",
+            "category": "Media > Books > Print Books",
+            "manufacturer": "Xerox",
+            "brand": "Xerox",
+            "contributors": [
+                {
+                    "role": "author",
+                    "name": "Blake, Quentin"
+                },
+                {
+                    "role": "publisher",
+                    "name": "Greenwillow Books"
+                }
+            ],
+            "age_group": "adult",
+            "ingredients": "Organic Tapioca Syrup, Organic Dried Cane Syrup, Natural Flavor.",
+            "nutrition_facts": "Protein 0 G, Total lipid (fat) 0 G, Energy 300 KCAL, Sugars, total including NLEA 40 G.",
+            "energy_efficiency_class": "A+ (A+++ to D)",
+            "color": "blue",
+            "gender": "female",
+            "material": "cloth",
+            "pattern": "checkered",
+            "format": "DVD",
+            "multipack": "8",
+            "size": "7 US",
+            "length": "45 in",
+            "width": "30 in",
+            "height": "22 in",
+            "weight": "7 lb",
+            "release_date": "2003-07-28",
+            "description": "One of a kind, Nike Red Running Shoes that are great for walking, running and sports.",
+            "features": [
+                "Rugged construction",
+                "Convenient carrying case",
+                "5 year warranty"
+            ],
+            "images": [
+                "https://images.barcodelookup.com/5219/52194594-1.jpg",
+                "https://images.barcodelookup.com/5219/52194594-2.jpg",
+                "https://images.barcodelookup.com/5219/52194594-3.jpg"
+            ],
+            "last_update": "2022-03-03 20:28:19",
+            "stores": [
+                {
+                    "name": "Newegg.com",
+                    "country": "US",
+                    "currency": "USD",
+                    "currency_symbol": "$",
+                    "price": "41.38",
+                    "sale_price": "35.99",
+                    "tax": [
+                        {
+                            "country": "US",
+                            "region": "US",
+                            "rate": "5.00",
+                            "tax_ship": "no"
+                        }
+                    ],
+                    "link": "https://www.newegg.com/product-link",
+                    "item_group_id": "AB-4312",
+                    "availability": "in stock",
+                    "condition": "new",
+                    "shipping": [
+                        {
+                            "country": "US",
+                            "region": "US",
+                            "service": "Standard",
+                            "price": "8.49 USD"
+                        }
+                    ],
+                    "last_update": "2021-05-19 09:07:42"
+                },
+                .....,
+                .....
+            ],
+            "reviews": [
+                {
+                    "name": "Josh Keller",
+                    "rating": "5",
+                    "title": "Love these shoes!",
+                    "review": "A stylish and great fitting shoe for walking and running.",
+                    "date": "2015-03-19 21:48:03"
+                },
+                .....,
+                .....
+            ]
+        }
+    ]
+}</code></div></pre>
+<div class="table-responsive">
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Product Attribute</th><th>Data Type</th><th>Example Value</th>
+</tr>
+</thead>
+<tr>
+<td>barcode_number</td><td>integer</td><td>7433144698629</td>
+</tr>
+<tr>
+<td>barcode_formats</td><td>string</td><td>UPC-A 811158031873, EAN-13 0811158031873</td>
+</tr>
+<tr>
+<td>mpn</td><td>string</td><td>CE-XL3200</td>
+</tr>
+<tr>
+<td>model</td><td>string</td><td>4910</td>
+</tr>
+<tr>
+<td>asin</td><td>string</td><td>B00Q6IU52S</td>
+</tr>
+<tr>
+<td>title</td><td>string</td><td>Lord Of The Rings</td>
+</tr>
+<tr>
+<td>category</td><td>string</td><td>Home &amp; Garden > Decor</td>
+</tr>
+<tr>
+<td>manufacturer</td><td>string</td><td>LEGO Systems, Inc.</td>
+</tr>
+<tr>
+<td>brand</td><td>string</td><td>Ralph Lauren</td>
+</tr>
+<tr>
+<td>contributors</td><td>array</td><td>author: J. K. Rowling</td>
+</tr>
+<tr>
+<td>age_group</td><td>string</td><td>newborn</td>
+</tr>
+<tr>
+<td>ingredients</td><td>string</td><td>Tomatoes, Onions, Celery</td>
+</tr>
+<tr>
+<td>nutrition_facts</td><td>string</td><td>Calories 85, Protein 7g</td>
+</tr>
+<tr>
+<td>energy_efficiency_class</td><td>string</td><td>A+ (A+++ to D)</td>
+</tr>
+<tr>
+<td>color</td><td>string</td><td>Purple</td>
+</tr>
+<tr>
+<td>gender</td><td>string</td><td>Male</td>
+</tr>
+<tr>
+<td>material</td><td>string</td><td>Leather</td>
+</tr>
+<tr>
+<td>pattern</td><td>string</td><td>Dotted</td>
+</tr>
+<tr>
+<td>format</td><td>string</td><td>Paperback</td>
+</tr>
+<tr>
+<td>multipack</td><td>string</td><td>6</td>
+</tr>
+<tr>
+<td>size</td><td>string</td><td>Large</td>
+</tr>
+<tr>
+<td>length</td><td>string</td><td>3.7 in</td>
+</tr>
+<tr>
+<td>width</td><td>string</td><td>4.8 in</td>
+</tr>
+<tr>
+<td>height</td><td>string</td><td>2.5 in</td>
+</tr>
+<tr>
+<td>weight</td><td>string</td><td>0.64 lb</td>
+</tr>
+<tr>
+<td>release_date</td><td>string</td><td>2012-04-15</td>
+</tr>
+<tr>
+<td>description</td><td>string</td><td>Detailed product description...</td>
+</tr>
+<tr>
+<td>features</td><td>array</td><td>•Long battery life •Batteries included</td>
+</tr>
+<tr>
+<td>images</td><td>array</td><td>https://images.barcodelookup.com/id</td>
+</tr>
+<tr>
+<td>last_update</td><td>string</td><td>2021-05-19 09:07:42</td>
+</tr>
+</table>
+</div>
+<div class="table-responsive">
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Store Attribute</th><th>Data Type</th><th>Example Value</th>
+</tr>
+</thead>
+<tr>
+<td>name</td><td>string</td><td>ABC Widgets Ltd.</td>
+</tr>
+<tr>
+<td>country</td><td>string</td><td>US</td>
+</tr>
+<tr>
+<td>currency</td><td>string</td><td>USD</td>
+</tr>
+<tr>
+<td>currency_symbol</td><td>string</td><td>$</td>
+</tr>
+<tr>
+<td>price</td><td>string</td><td>12.99</td>
+</tr>
+<tr>
+<td>sale_price</td><td>string</td><td>7.49</td>
+</tr>
+<tr>
+<td>tax</td><td>array</td><td>country: US, region: US, rate: 7.00, tax_ship: no</td>
+</tr>
+<tr>
+<td>link</td><td>string</td><td>https://www.storename.com/product-link</td>
+</tr>
+<tr>
+<td>item_group_id</td><td>string</td><td>A1BXC-GD2
+</tr>
+<tr>
+<td>availability</td><td>string</td><td>in stock</td>
+</tr>
+<tr>
+<td>condition</td><td>string</td><td>new</td>
+</tr>
+<tr>
+<td>shipping</td><td>array</td><td>country: US, region: US, service: Ground, price: 7.29 USD</td>
+</tr>
+<tr>
+<td>last_update</td><td>string</td><td>2022-04-17 12:09:18</td>
+</tr>
+</table>
+</div>
+<div class="table-responsive">
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Review Attribute</th><th>Data Type</th><th>Example Value</th>
+</tr>
+</thead>
+<tr>
+<td>name</td><td>string</td><td>Gary Jones</td>
+</tr>
+<tr>
+<td>rating</td><td>string</td><td>4.5</td>
+</tr>
+<tr>
+<td>title</td><td>string</td><td>Quick Charge</td>
+</tr>
+<tr>
+<td>review</td><td>string</td><td>Very fast charger that's always reliable!</td>
+</tr>
+<tr>
+<td>date</td><td>string</td><td>2021-06-22 07:31:18</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="accordion">
+<div class="panel">
+<div class="panel-heading">
+<h4 class="panel-title">
+<span class="accordion-get-btn">GET</span>
+<span class="panel-up-arrow">https://api.barcodelookup.com/v3/rate-limits</span>
+</h4>
+</div>
+<div class="panel-body first-panel">
+<div class="table-responsive">
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>formatted</td>
+<td>string</td>
+<td>beautify JSON output</td>
+</tr>
+<tr>
+<td>key</td>
+<td>string</td>
+<td>your unique API key (required)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="api-documentation-subtitle">Curl Example</div>
+<div class="code-overflow"><code>curl --include --header 'Accept: application/json' 'https://api.barcodelookup.com/v3/rate-limits?key=your_api_key'</code></div>
+<div class="api-documentation-subtitle">Request URL Example</div>
+<div class="code-overflow"><code>https://api.barcodelookup.com/v3/rate-limits?formatted=y&key=your_api_key</code></div>
+<div class="api-documentation-subtitle">Response Code</div>
+<div class="code-overflow"><code>200</code></div>
+<div class="api-documentation-subtitle">Response Body</div>
+<pre><div class="code-overflow-pre"><code>{    
+    "allowed_calls_per_month": "500000",
+    "remaining_calls_per_month": "408498",
+    "allowed_calls_per_minute": "100",
+    "remaining_calls_per_minute": "97"
+}</code></div></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="dashboard-divider">
+<div class="container" id="code-examples">
+<div class="row">
+<div class="col-100">
+<h2 class="no-text-decoration">Code Examples</h2>
+<p>Below are a few sample scripts to help you get started. The code examples demonstrate how to make an API call and print output in several popular programming languages.</p>
+<div class="tab">
+<button id="php-tab" class="tab-btn tab-active">PHP</button>
+<button id="javascript-tab" class="tab-btn">JavaScript</button>
+<button id="python-tab" class="tab-btn">Python</button>
+<button id="ruby-tab" class="tab-btn">Ruby</button>
+<button id="java-tab" class="tab-btn">Java</button>
+<button id="perl-tab" class="tab-btn">Perl</button>
+<button id="csharp-tab" class="tab-btn">C#</button>
+</div>
+<div id="php-tab-content" class="tab-content">
+<div id="php" class="tab-pane fade in active">
+<pre><div class="code-overflow-pre"><code class="bolded-code">
+<span class="black-code">&lt;?php</span>
+
+<span class="brown-code">$api_key</span> <span class="black-code">=</span> <span class="orange-code">'ENTER YOUR API KEY HERE'</span><span class="black-code">;</span>
+<span class="brown-code">$url</span> <span class="black-code">=</span> <span class="orange-code">'https://api.barcodelookup.com/v3/products?barcode=077341125112&formatted=y&key='</span> <span class="black-code">.</span> <span class="brown-code">$api_key</span><span class="black-code">;</span>
+
+<span class="brown-code">$ch</span> <span class="black-code">=</span> curl_init<span class="black-code">();</span>
+
+<span class="brown-code">$data</span> <span class="black-code">=</span> get_data<span class="black-code">(</span><span class="brown-code">$url</span><span class="black-code">,</span> <span class="brown-code">$ch</span><span class="black-code">);</span>
+
+<span class="brown-code">$response</span> <span class="black-code">=</span> <span class="blue-code">array</span><span class="black-code">();</span>
+<span class="brown-code">$response</span> <span class="black-code">=</span> json_decode<span class="black-code">(</span><span class="brown-code">$data</span><span class="black-code">);</span>
+
+<span class="blue-code">echo</span> <span class="orange-code">'&lt;strong>Barcode Number:&lt;/strong> '</span> <span class="black-code">.</span> <span class="brown-code">$response</span><span class="black-code">-></span><span class="green-code">products</span><span class="black-code">[</span><span class="pink-code">0</span><span class="black-code">]-></span><span class="green-code">barcode_number</span> <span class="black-code">.</span> <span class="orange-code">'&lt;br>&lt;br>'</span><span class="black-code">;</span>
+
+<span class="blue-code">echo</span> <span class="orange-code">'&lt;strong>Title:&lt;/strong> '</span> <span class="black-code">.</span> <span class="brown-code">$response</span><span class="black-code">-></span><span class="green-code">products</span><span class="black-code">[</span><span class="pink-code">0</span><span class="black-code">]-></span><span class="green-code">title</span> <span class="black-code">.</span> <span class="orange-code">'&lt;br>&lt;br>'</span><span class="black-code">;</span>
+
+<span class="blue-code">echo</span> <span class="orange-code">'&lt;strong>Entire Response:&lt;/strong>&lt;pre>'</span><span class="black-code">;</span>
+print_r<span class="black-code">(</span><span class="brown-code">$response</span><span class="black-code">);</span>
+<span class="blue-code">echo</span> <span class="orange-code">'&lt;/pre>'</span><span class="black-code">;</span>
+
+<span class="blue-code">function</span> get_data<span class="black-code">(</span><span class="brown-code">$url</span><span class="black-code">,</span> <span class="brown-code">$ch</span><span class="black-code">) {</span>
+    
+    curl_setopt<span class="black-code">(</span><span class="brown-code">$ch</span><span class="black-code">,</span> CURLOPT_URL<span class="black-code">,</span> <span class="brown-code">$url</span><span class="black-code">);</span>
+    curl_setopt<span class="black-code">(</span><span class="brown-code">$ch</span><span class="black-code">,</span> CURLOPT_RETURNTRANSFER<span class="black-code">,</span> <span class="pink-code">1</span><span class="black-code">);</span>
+    curl_setopt<span class="black-code">(</span><span class="brown-code">$ch</span><span class="black-code">,</span> CURLOPT_SSL_VERIFYPEER<span class="black-code">,</span> <span class="pink-code">0</span><span class="black-code">);</span>
+    curl_setopt<span class="black-code">(</span><span class="brown-code">$ch</span><span class="black-code">,</span> CURLOPT_SSL_VERIFYHOST<span class="black-code">,</span> <span class="pink-code">0</span><span class="black-code">);</span>
+    <span class="brown-code">$data</span> <span class="black-code">=</span> curl_exec(<span class="brown-code">$ch</span><span class="black-code">);</span>
+    curl_close<span class="black-code">(</span><span class="brown-code">$ch</span><span class="black-code">);</span>
+
+    <span class="blue-code">return</span> <span class="brown-code">$data</span><span class="black-code">;</span>
+<span class="black-code">}</span></code></div></pre>
+</div>
+</div>
+<div id="javascript-tab-content" class="tab-content">
+<div id="javascript">
+<pre><div class="code-overflow-pre"><code class="bolded-code">
+<span class="blue-code">&lt;html></span>
+
+    <span class="blue-code">&lt;script></span>
+        <span class="blue-code">function</span> <span class="black-code">getAPIdata() {</span>
+            <span class="blue-code">const</span> <span class="black-code">proxyurl = </span><span class="orange-code">"https://cors-anywhere.herokuapp.com/"</span><span class="black-code">;</span> <span class="grey-code">// Use a proxy to avoid CORS error</span>
+            <span class="blue-code">const</span> <span class="black-code">api_key = </span><span class="orange-code">"ENTER_YOUR_API_KEY_HERE"</span><span class="black-code">;</span>
+            <span class="blue-code">const</span> <span class="black-code">url = proxyurl + </span><span class="orange-code">"https://api.barcodelookup.com/v3/products?barcode=077341125112&formatted=y&key="</span> <span class="black-code">+ api_key;</span>
+            <span class="purple-code">fetch</span><span class="black-code">(url)
+                    .then(response => response.json())
+                    .then((data) => {</span>
+           		<span class="purple-code">document</span><span class="black-code">.getElementById(</span><span class="orange-code">"BarcodeNumber"</span><span class="black-code">).</span><span class="green-code">innerHTML</span> <span class="black-code">= (data.products[0].barcode_number);</span>
+			<span class="purple-code">document</span><span class="black-code">.getElementById(</span><span class="orange-code">"Title"</span><span class="black-code">).</span><span class="green-code">innerHTML</span> <span class="black-code">= (data.products[0].title);</span>
+			<span class="purple-code">document</span><span class="black-code">.getElementById(</span><span class="orange-code">"EntireResponse"</span><span class="black-code">).</span><span class="green-code">innerHTML</span> <span class="black-code">=</span> <span class="purple-code">JSON</span><span class="black-code">.stringify(data, </span><span class="blue-code">null</span><span class="black-code">,</span><span class="orange-code">"&lt;br/>"</span><span class="black-code">);
+                    })
+                    .catch(err => {</span> 
+                        <span class="blue-code">throw</span> <span class="black-code">err 
+                    });
+        }</span>
+    <span class="blue-code">&lt;/script></span>
+	
+    <span class="blue-code">&lt;body</span> <span class="green-code">onload=</span><span class="orange-code">"</span><span class="black-code">getAPIdata()</span><span class="orange-code">"</span><span class="blue-code">></span>
+	
+	<span class="blue-code">&lt;strong></span><span class="black-code">Barcode Number:</span> <span class="blue-code">&lt;/strong></span> <span class="blue-code">&lt;div</span> <span class="green-code">id=</span><span class="orange-code">"</span><span class="green-code">BarcodeNumber</span><span class="orange-code">"</span><span class="blue-code">>&lt;/div></span><span class="blue-code">&lt;br/></span>
+		
+	<span class="blue-code">&lt;strong></span><span class="black-code">Title:</span> <span class="blue-code">&lt;/strong></span> <span class="blue-code">&lt;div</span> <span class="green-code">id=</span><span class="orange-code">"</span><span class="green-code">Title</span><span class="orange-code">"</span><span class="blue-code">>&lt;/div></span><span class="blue-code">&lt;br/></span>
+	
+	<span class="blue-code">&lt;strong></span><span class="black-code">Entire Response:</span> <span class="blue-code">&lt;/strong></span>
+		
+	<span class="blue-code">&lt;div</span> <span class="green-code">id=</span><span class="orange-code">"</span><span class="green-code">EntireResponse</span><span class="orange-code">"</span><span class="blue-code">>&lt;/div></span>
+	
+    <span class="blue-code">&lt;/body></span>
+
+<span class="blue-code">&lt;/html></span></code></div></pre>
+</div>
+</div>
+<div id="python-tab-content" class="tab-content">
+<div id="python">
+<pre><div class="code-overflow-pre"><code class="bolded-code">
+<span class="blue-code">import</span> <span class="black-code">urllib.request</span>
+<span class="blue-code">import</span> <span class="black-code">json</span>
+<span class="blue-code">import</span> <span class="black-code">pprint</span>
+
+<span class="brown-code">api_key</span> <span class="black-code">=</span> <span class="orange-code">"ENTER_YOUR_API_KEY_HERE"</span>
+<span class="brown-code">url</span> <span class="black-code">=</span> <span class="orange-code">"https://api.barcodelookup.com/v3/products?barcode=077341125112&formatted=y&key="</span> <span class="black-code">+</span> <span class="brown-code">api_key</span>
+
+<span class="blue-code">with </span><span class="black-code">urllib.request.urlopen(</span><span class="brown-code">url</span><span class="black-code">) </span><span class="blue-code">as</span> <span class="brown-code">url</span><span class="black-code">:</span>
+    <span class="brown-code">data</span> <span class="black-code">= json.loads(<span class="black-code">url.read().decode</span>())</span>
+
+<span class="brown-code">barcode</span> <span class="black-code">= <span class="brown-code">data</span><span class="black-code">[</span><span class="green-code">"products"<span class="black-code">][</span><span class="pink-code">0</span><span class="black-code">][</span><span class="green-code">"barcode_number"</span><span class="black-code">]
+<span class="blue-code">print</span> <span class="black-code">(</span><span class="orange-code">"Barcode Number: "</span>, <span class="brown-code">barcode</span><span class="black-code">,</span><span class="orange-code"> "\n"</span><span class="black-code">)</span>
+
+<span class="brown-code">name</span> <span class="black-code">=</span> <span class="brown-code">data</span><span class="black-code">[</span><span class="green-code">"products"</span><span class="black-code">][</span><span class="pink-code">0</span><span class="black-code">][</span><span class="green-code">"title"</span><span class="black-code">]
+<span class="blue-code">print</span> <span class="black-code">(</span><span class="orange-code">"Title: "</span>, <span class="brown-code">name</span><span class="black-code">,</span> <span class="orange-code">"\n"</span><span class="black-code">)</span>
+
+<span class="blue-code">print</span> <span class="black-code">(</span><span class="orange-code">"Entire Response:"</span><span class="black-code">)</span>
+pprint.pprint(<span class="brown-code">data</span>)
+</code></div></pre>
+</div>
+</div>
+<div id="ruby-tab-content" class="tab-content">
+<div id="ruby">
+<pre><div class="code-overflow-pre"><code class="bolded-code">
+<span class="blue-code">require </span><span class="orange-code">'net/http'</span>
+<span class="blue-code">require </span><span class="orange-code">'json'</span>
+<span class="brown-code">api_key <span class="black-code">=</span> <span class="orange-code">'ENTER_YOUR_API_KEY_HERE'</span>
+<span class="brown-code">url</span> <span class="black-code">=</span> <span class="orange-code">'https://api.barcodelookup.com/v3/products?barcode=077341125112&formatted=y&key='</span> <span class="black-code">+</span> <span class="brown-code">api_key</span>
+
+<span class="brown-code">uri</span> <span class="black-code">= URI(</span><span class="brown-code">url</span><span class="black-code">)</span>
+<span class="brown-code">response</span> <span class="black-code">= Net::HTTP.get(<span class="brown-code">uri</span><span class="black-code">)</span>
+<span class="brown-code">data</span> <span class="black-code">= JSON.parse(</span><span class="brown-code">response</span>)
+	
+<span class="brown-code">barcode</span> <span class="black-code">= data[</span><span class="orange-code">'<span class="green-code">products</span>'</span>][<span class="pink-code">0</span>][<span class="orange-code">'</span><span class="green-code">barcode_number</span>'<span class="black-code">]</span>
+<span class="blue-code">puts</span> <span class="orange-code">"Barcode Number:</span> <span class="black-code">#{barcode} <span class="orange-code">\n\n"</span> 
+
+<span class="brown-code">name</span> <span class="black-code">= data[</span><span class="orange-code">'<span class="green-code">products</span>'</span>][<span class="pink-code">0</span>][<span class="orange-code">'</span><span class="green-code">title</span>'<span class="black-code">]</span> <span class="black-code">+</span> <span class="orange-code">"\n\n"</span>
+<span class="blue-code">puts</span> <span class="orange-code">"Title:</span> <span class="black-code">#{name}</span><span class="orange-code">"</span>
+	
+<span class="blue-code">puts </span><span class="orange-code">'Entire Response:'</span>
+<span class="blue-code">puts </span><span class="black-code">JSON.pretty_generate(</span><span class="brown-code">data</span><span class="black-code">)	</span>
+</code></div></pre>
+</div>
+</div>
+<div id="java-tab-content" class="tab-content">
+<div id="java">
+<pre><div class="code-overflow-pre"><code class="bolded-code">
+<span class="blue-code">import</span><span class="black-code"> java.io.BufferedReader;</span>
+<span class="blue-code">import</span><span class="black-code"> java.io.InputStreamReader;</span>
+<span class="blue-code">import</span><span class="black-code"> java.net.URL;</span>
+<span class="blue-code">import</span><span class="black-code"> com.google.gson.Gson;</span>
+<span class="blue-code">import</span><span class="black-code"> com.google.gson.GsonBuilder;</span>
+
+<span class="blue-code">public class <strong>Sample</strong></span> <span class="black-code">{</span>
+
+    <span class="blue-code">public class <strong>Store</strong></span> <span class="black-code">{</span>
+        <span class="blue-code">public</span><span class="black-code"> String name;</span>
+        <span class="blue-code">public</span><span class="black-code"> String price;</span>
+        <span class="blue-code">public</span><span class="black-code"> String link;</span>
+        <span class="blue-code">public</span><span class="black-code"> String currency;</span>
+        <span class="blue-code">public</span><span class="black-code"> String currency_symbol;</span><span class="black-code">
+    }</span>
+
+    <span class="blue-code">public class <strong>Review</strong></span> <span class="black-code">{</span>
+        <span class="blue-code">public</span><span class="black-code"> String name;</span>
+        <span class="blue-code">public</span><span class="black-code"> String rating;</span>
+        <span class="blue-code">public</span><span class="black-code"> String title;</span>
+        <span class="blue-code">public</span><span class="black-code"> String review;</span>
+        <span class="blue-code">public</span><span class="black-code"> String date;
+    }</></span>
+
+    <span class="blue-code">public class <strong>Product</strong></span> <span class="black-code">{</span>
+        <span class="blue-code">public</span><span class="black-code"> String barcode_number;</span>
+        <span class="blue-code">public</span><span class="black-code"> String barcode_formats;</span>
+        <span class="blue-code">public</span><span class="black-code"> String mpn;</span>
+        <span class="blue-code">public</span><span class="black-code"> String model;</span>
+        <span class="blue-code">public</span><span class="black-code"> String asin;</span>
+        <span class="blue-code">public</span><span class="black-code"> String title;</span>
+        <span class="blue-code">public</span><span class="black-code"> String category;</span>
+        <span class="blue-code">public</span><span class="black-code"> String manufacturer;</span>
+        <span class="blue-code">public</span><span class="black-code"> String brand;</span>
+        <span class="blue-code">public</span><span class="black-code"> String[] contributors;</span>
+        <span class="blue-code">public</span><span class="black-code"> String age_group;</span>
+        <span class="blue-code">public</span><span class="black-code"> String ingredients;</span>
+        <span class="blue-code">public</span><span class="black-code"> String nutrition_facts;</span>
+        <span class="blue-code">public</span><span class="black-code"> String color;</span>
+        <span class="blue-code">public</span><span class="black-code"> String format;</span>
+        <span class="blue-code">public</span><span class="black-code"> String multipack;</span>
+        <span class="blue-code">public</span><span class="black-code"> String size;</span>
+        <span class="blue-code">public</span><span class="black-code"> String length;</span>
+        <span class="blue-code">public</span><span class="black-code"> String width;</span>
+        <span class="blue-code">public</span><span class="black-code"> String height;</span>
+        <span class="blue-code">public</span><span class="black-code"> String weight;</span>
+        <span class="blue-code">public</span><span class="black-code"> String release_date;</span>
+        <span class="blue-code">public</span><span class="black-code"> String description;</span>
+        <span class="blue-code">public</span><span class="black-code"> Object[] features;</span>
+        <span class="blue-code">public</span><span class="black-code"> String[] images;</span>
+        <span class="blue-code">public <strong>Store</strong></span><span class="black-code">[] stores;</span>
+        <span class="blue-code">public <strong>Review</strong><span class="black-code">[] reviews;
+    }</span>
+
+    <span class="blue-code">public class <strong>RootObject</strong></span> <span class="black-code">{</span>
+        <span class="blue-code">public <strong>Product</strong></span><span class="black-code">[] products;
+    }</span>
+	
+    <span class="blue-code">public static</span> <span class="brown-code">void</span><span class="black-code"> main(String[] args) {</span>
+	<span class="blue-code">try</span><span class="black-code"> {
+            URL url = <span class="blue-code">new</span> URL(<span class="orange-code">"https://api.barcodelookup.com/v3/products?barcode=077341125112&formatted=y&key=ENTER_YOUR_API_KEY_HERE"</span><span class="b-lackcode">);
+            BufferedReader br = <span class="blue-code">new</span> BufferedReader(<span class="blue-code">new</span> InputStreamReader(url.openStream()));
+            String str = <span class="orange-code">""</span><span class="black-code">;
+            String data = </span><span class="orange-code">""</span><span class="black-code">;
+            <span class="blue-code">while</span> (<span class="blue-code">null</span> != (str= br.readLine())) {
+                data+=str;
+            }
+        
+            Gson g = <span class="blue-code">new</span> Gson();
+
+            <span class="blue-code"><strong>RootObject</strong></span> value = g.fromJson(data, <span class="blue-code"><strong>RootObject</strong>.class</span><span class="black-code">);
+			
+            String barcode = value.products[<span class="green-code">0</span>].barcode_number;
+            System.out.print(</span><span class="orange-code">"Barcode Number: "</span><span class="black-code">);
+            System.out.println(barcode);
+			
+            String name = value.products[<span class="green-code">0</span>].title;
+            System.out.print(</span><span class="orange-code">"Title: "</span><span class="black-code">);
+            System.out.println(name);
+			
+            System.out.println(</span><span class="orange-code">"Entire Response:"</span><span class="black-code">);
+            System.out.println(data);
+
+        } </span><span class="blue-code">catch</span><span class="black-code"> (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+}</span></code></div></pre>
+</div>
+</div>
+<div id="perl-tab-content" class="tab-content">
+<div id="perl">
+<pre><div class="code-overflow-pre"><code class="bolded-code">
+<span class="blue-code">use</span> <span class="black-code">LWP::Simple;</span>                
+<span class="blue-code">use</span> <span class="black-code">JSON; </span>    					
+<span class="blue-code">use</span> <span class="black-code">Data::Dumper; </span>              
+
+<span class="blue-code">my</span> <span class="brown-code">$api_key</span> <span class="black-code">=</span> <span class="orange-code">"ENTER_YOUR_API_KEY_HERE"<span class="black-code">;</span> 
+<span class="blue-code">my</span> <span class="brown-code">$url</span> <span class="black-code">=</span> <span class="orange-code">"https://api.barcodelookup.com/v3/products?barcode=077341125112&formatted=y&key="</span><span class="brown-code">.$api_key</span><span class="black-code">;</span>
+
+<span class="blue-code">my</span> <span class="brown-code">$json</span> <span class="black-code">= get(</span> <span class="brown-code">$url</span><span class="black-code"> );</span>
+<span class="blue-code">die</span> <span class="orange-code">"Could not get</span> $url<span class="orange-code">!" <span class="blue-code">unless defined</span> <span class="brown-code">$json</span><span class="black-code">;</span>
+
+<span class="blue-code">my</span> <span class="brown-code">$data</span> <span class="black-code">= decode_json( </span><span class="brown-code">$json</span><span class="black-code"> );</span>
+
+<span class="blue-code">my</span> <span class="brown-code">$barcode</span><span class="black-code"> <span class="black-code">=</span> </span><span class="brown-code">$data<span class="black-code">->{</span><span class="green-code">products</span><span class="black-code">}->[</span><span class="pink-code">0</span><span class="black-code">]->{<span class="green-code">barcode_number</span><span class="black-code">};</span>
+<span class="blue-code">print</span> <span class="orange-code">"Barcode Number: "</span><span class="black-code">.</span><span class="brown-code">$barcode</span><span class="black-code">.<span class="orange-code">"\n"</span><span class="black-code">;</span>
+
+<span class="blue-code">my</span> <span class="brown-code">$name</span><span class="black-code"> <span class="black-code">=</span> </span><span class="brown-code">$data<span class="black-code">->{</span><span class="green-code">products</span><span class="black-code">}->[</span><span class="pink-code">0</span><span class="black-code">]->{<span class="green-code">title</span><span class="black-code">};</span>
+<span class="blue-code">print</span> <span class="orange-code">"Title: "</span><span class="black-code">.</span><span class="brown-code">$name</span><span class="black-code">.<span class="orange-code">"\n"</span><span class="black-code">;</span>
+
+<span class="blue-code">print</span> <span class="orange-code">"Entire Response: \n"</span>;
+<span class="blue-code">print</span> Dumper <span class="brown-code">$data</span>;
+</code></div></pre>
+</div>
+</div>
+<div id="csharp-tab-content" class="tab-content">
+<div id="csharp">
+<pre><div class="code-overflow-pre"><code class="bolded-code">
+<span class="blue-code">using </span><span class="black-code">System;</span>
+<span class="blue-code">using </span><span class="black-code">System.Net;</span>
+<span class="blue-code">using </span><span class="black-code">Newtonsoft.Json;</span>
+<span class="blue-code">using </span><span class="black-code">System.Collections.Generic;</span>
+
+<span class="blue-code">public class <strong>Store</strong></span> <span class="black-code">{</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> name { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> price { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> link { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> currency { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> currency_symbol { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+<span class="black-code">}</span>
+
+<span class="blue-code">public class <strong>Review</strong></span> <span class="black-code">{</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> name { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> rating { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> title { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> review { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> date { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+<span class="black-code">}</span>
+
+<span class="blue-code">public class <strong>Product</strong></span> <span class="black-code">{</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> barcode_number { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> barcode_formats { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> mpn { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> model { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> asin { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> title { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> category { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> manufacturer { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> brand { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> IList&lt;</span><span class="blue-code">string</span><span class="black-code">> contributors { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> age_group { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> ingredients { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> nutrition_facts { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> color { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> format { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> multipack { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> size { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> length { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> width { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> height { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> weight { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> release_date { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> String</span><span class="black-code"> description { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> IList&lt;</span><span class="blue-code">object</span><span class="black-code">> features { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> IList&lt;</span><span class="blue-code">string</span><span class="black-code">> images { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> IList&lt;</span><span class="blue-code">Store</span><span class="black-code">> stores { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+    <span class="blue-code">public</span><span class="black-code"> IList&lt;</span><span class="blue-code">Review</span><span class="black-code">> reviews { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+<span class="black-code">}</span>
+
+<span class="blue-code">public class<strong> RootObject</strong></span> <span class="black-code">{</span>
+    <span class="blue-code">public </span><span class="black-code">IList</span><span class="blue-code">&lt;Product> products { </span><span class="brown-code">get</span><span class="black-code">; </span><span class="brown-code">set</span><span class="black-code">; }</span>
+<span class="black-code">}</span>
+
+<span class="blue-code">public class <strong>Program</strong> <span class="black-code">{</span>
+    public static void </span><span class="black-code">Main(</span><span class="blue-code">string</span><span class="black-code">[] args) {</span>
+        <span class="blue-code">using </span><span class="black-code">(WebClient webClient = </span><span class="blue-code">new</span><span class="black-code"> System.Net.WebClient()) {</span>
+            WebClient n = </span><span class="blue-code">new</span><span class="black-code"> WebClient();</span>
+            <span class="blue-code">string</span><span class="black-code"> api_key = </span><span class="orange-code">"ENTER_YOUR_API_KEY_HERE"</span><span class="black-code">; </span>
+            <span class="blue-code">string</span><span class="black-code"> url = <span class="orange-code">"https://api.barcodelookup.com/v3/products?barcode=077341125112&formatted=y&key="</span><span class="black-code"> + api_key;</span>
+            <span class="brown-code">var</span><span class="black-code"> data = n.DownloadString(url);
+            <span class="brown-code">var</span><span class="black-code"> name = JsonConvert.DeserializeObject&lt;<span class="blue-code"><strong>RootObject</strong></span>>(data).<span class="black-code">products[</span><span class="green-code">0</span><span class="black-code">].title</span>;
+            System.Console.Write(<span class="orange-code">"Title: "</span>);
+            System.Console.WriteLine(name);
+			
+            <span class="brown-code">var</span><span class="black-code"> barcode = JsonConvert.DeserializeObject&lt;<span class="blue-code"><strong>RootObject</strong></span>>(data).<span class="black-code">products[</span><span class="green-code">0</span><span class="black-code"><span class="black-code">].barcode_number</span>;
+            System.Console.Write(<span class="orange-code">"Barcode Number: "</span>);
+            System.Console.WriteLine(barcode);
+		
+            System.Console.WriteLine(<span class="orange-code">"Entire Response: "</span>);
+            System.Console.WriteLine(data);
+        }
+    }
+}</code></div></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="dashboard-divider">
+<div class="container" id="api-queries">
+<div class="row">
+<div class="col-100">
+<h2 class="no-text-decoration">API Queries</h2>
+<h3>Barcode</h3>
+<p>When you make a call with a UPC, EAN, ISBN or GTIN, the <strong>barcode</strong> parameter is used. A barcode query always returns one product, if data for that item is available.</p>
+<div class="code-overflow"><code>https://api.barcodelookup.com/v3/products?barcode=815144010392&formatted=y&key=your_api_key</code></div>
+<h3>Partial Barcode</h3>
+<p>Query a partial barcode number by combining the first 6 or more digits, followed by an asterisk (*). This is particularly useful when you know the company's GS1 Company Prefix.</p>
+<div class="code-overflow"><code>https://api.barcodelookup.com/v3/products?barcode=091207*&formatted=y&key=your_api_key</code></div>
+<h3>Batch Barcode</h3>
+<p>Query up to 10 barcode numbers simultaneously by combining each one with a comma (,).</p>
+<div class="code-overflow"><code>https://api.barcodelookup.com/v3/products?barcode=814323021563,193574113730,614409280514&formatted=y&key=your_api_key</code></div>
+<h3>Search Parameters</h3>
+<p>Make a query using the <strong>mpn</strong>, <strong>asin</strong>, <strong>title</strong>, <strong>category</strong>, <strong>manufacturer</strong> or <strong>brand</strong> parameters, individually or by combining these fields using the <strong>& (ampersand)</strong> operator. The more parameters you use, the more your output is filtered since you can target multiple fields at once with different values.</p>
+<p>When you use a search parameter or when you combine parameters, you may retrieve more than 1 result and up to 10 results per page. Similar to how a search engine works: the first result is typically the most relevant, and the rest of the results become less relevant as you move down the list.</p>
+<div class="code-overflow"><code>https://api.barcodelookup.com/v3/products?category=Apparel%20%26%20Accessories%20%3E%20Shoes&title=Running%20Shoes&formatted=y&key=your_api_key</code></div>
+<h3>Exact Match</h3>
+<p>Use double quotes on <strong>manufacturer</strong> and <strong>brand</strong> values to get an exact match. Without quotes, the results may include values with additional words or variations - a <i>fuzzy match</i> result.</p>
+<div class="code-overflow"><code>https://api.barcodelookup.com/v3/products?brand=%22Calvin%20Klein%22&key=&formatted=y&key=your_api_key</code></div>
+<h3>Search Everything</h3>
+<p>Use the <strong>search</strong> parameter to query all the parameters with a single search string.</p>
+<div class="code-overflow"><code>https://api.barcodelookup.com/v3/products?search=olive%20oil%20from%20italy&formatted=y&key=your_api_key</code></div>
+<h3>Metadata</h3>
+<p>Set the <strong>metadata</strong> parameter to 'y' to retrieve the number of pages and products for any search query. You'll also retrieve the 'next_cursor' value, which is useful for looping through the results.</p>
+<div class="code-overflow"><code>https://api.barcodelookup.com/v3/products?manufacturer=samsung&metadata=y&cursor=y&formatted=y&key=your_api_key</code></div>
+<h3>Cursor</h3>
+<p>Use the <strong>cursor</strong> parameter in conjunction with the <strong>metadata</strong> parameter to loop through all the API results. Your first query should be 'cursor=y'. Take the 'next_cursor' value from the metadata response and set the value accordingly for 'cursor' on each consecutive query. Utilize the 'metadata' and 'cursor' parameter for any API query that returns multiple results, including all 'search' parameters and partial 'barcode' queries.</p>
+<div class="code-overflow"><code>https://api.barcodelookup.com/v3/products?manufacturer=samsung&metadata=y&cursor=AoEpMTAwMjgyOTY4&formatted=y&key=your_api_key</code></div>
+<h3>Page</h3>
+<p>You can also use the <strong>page</strong> parameter to loop through results. The 'page' parameter simplifies looping since you don't need to keep track of the cursor value. The drawback of the 'page' parameter is that you can only use it for up to 1,000 pages. So, if you're always going to loop through 10,000 results or less (10 results per page X 1,000 pages), then the 'page' parameter might be a slightly simpler solution then the above metadata and cursor looping method.</p>
+<div class="code-overflow"><code>https://api.barcodelookup.com/v3/products?brand=apple&page=91&formatted=y&key=your_api_key</code></div>
+<h3>Formatting</h3>
+<p>In the above examples, the <strong>formatted</strong> parameter is used. Setting this parameter equal to 'y' is convenient for beautifying the JSON output in your browser, but not necessary for making API queries.</p>
+<h3>Encoding</h3>
+<p>Every API query must be properly encoded.</p>
+<div class="code-inline">
+The <strong>category</strong> value: <code>Apparel & Accessories > Shoes</code> is represented as <code>Apparel%20%26%20Accessories%20%3E%20Shoes</code> in an API query.
+</div>
+</div>
+</div>
+</div>
+<hr class="dashboard-divider">
+<div class="container" id="rate-limits">
+<div class="row">
+<div class="col-100">
+<h2 class="no-text-decoration">Rate Limits</h2>
+<p>Your monthly API call limit is determined by your <a target="_blank" href="https://www.barcodelookup.com/api#sign-up" class="red-hyperlink">API plan subscription</a>.</p>
+<p>The monthly API quota is only deducted when data is returned from a request, which will have a <a href="#http-status-codes" class="red-hyperlink">HTTP 200 status response code</a>.</p>
+<p>A maximum of 100 requests per minute are allowed. This rate limit can be increased for Enterprise accounts.</p>
+</div>
+</div>
+</div>
+<hr class="dashboard-divider">
+<div class="container" id="http-status-codes">
+<div class="row">
+<div class="col-100">
+<h2 class="no-text-decoration">HTTP Status Codes</h2>
+<p>HTTP status codes returned from API:</p>
+<div class="api-documentation-block">
+<div class="api-parameter">200 OK</div>
+<div class="api-parameter-description">Data returned</div>
+</div>
+<div class="api-documentation-block">
+<div class="api-parameter">403 Forbidden</div>
+<div class="api-parameter-description">Invalid API key</div>
+</div>
+<div class="api-documentation-block">
+<div class="api-parameter">404 Not Found</div>
+<div class="api-parameter-description">No data returned</div>
+</div>
+<div class="api-documentation-block">
+<div class="api-parameter">429 Too Many Requests</div>
+<div class="api-parameter-description">Exceeded API call limits</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="dashboard-divider">
+<div class="container" id="update-account">
+<div class="row">
+<div class="col-100">
+<h2 class="no-text-decoration">Update Account &amp; Billing Information</h2>
+<p>You can update your API customer profile and billing information by <a href="https://account.barcodelookup.com" class="red-hyperlink">logging in to your API account</a>.
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="footer">
+<div class="copyright">
+&copy; 2023 barcodelookup.com. all rights reserved.
+</div>
+</div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://www.barcodelookup.com/assets/javascript/accordion-panel.js"></script>
+<script src="https://www.barcodelookup.com/assets/javascript/tab-panel.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" nonce="39d97e3ed0f0cb7eacedcd05" data-cf-beacon='{"rayId":"822064373b13bffd","version":"2023.10.0","token":"9551c9bd914c4ad5b34fc56b6573df5b"}' crossorigin="anonymous"></script>
+</body>
+</html>
